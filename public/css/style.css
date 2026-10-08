@@ -1,0 +1,4 @@
+body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 16px; }
+nav { display: flex; gap: 16px; border-bottom: 1px solid #ddd; padding-bottom: 8px; margin-bottom: 16px; }
+.thread, .reply { border: 1px solid #eee; padding: 12px; margin-bottom: 8px; }
+input, textarea { display: block; margin: 8px 0; width: 100%; max-width: 400px; }

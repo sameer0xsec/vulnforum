@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  db:
+    image: mysql:8.0
+    container_name: vulnforum-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass123     # VULN: weak root password
+      MYSQL_DATABASE: vulnforum
+      MYSQL_USER: vulnforum
+      MYSQL_PASSWORD: forum123             # VULN: weak app DB password
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - dbdata:/var/lib/mysql
+
+  web:
+    build: ./apache
+    container_name: vulnforum-web
+    depends_on:
+      - db
+    volumes:
+      - ./public:/var/www/html
+    ports:
+      - "8082:80"
+
+volumes:
+  dbdata:
